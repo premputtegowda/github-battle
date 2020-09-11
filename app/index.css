@@ -23,12 +23,36 @@ body {
 .sidebar {
     background-color:#333;
     flex: 0 0 18%;
+    flex-direction: column;
+    justify-content: flex-start;
 
 }
 
 .main-view {
     background-color: #fff;
     flex:1;
+    /* test */
+    min-height: 80rem;
     background-color: orangered;
 
+}
+
+/* SIDE BAR NAV */
+
+.sidebar-nav{
+font-size: 1.4rem;
+margin-top: 3.5 rem;
+list-style: none;
+}
+
+.sidebar-nav__link {
+    color: #f4f9f9;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    padding: 1.5rem 3rem;
+}
+
+.sidebar-nav__link:visited {
+    
 }
