@@ -1,6 +1,29 @@
 import React from 'react';
 
+function LanguagesNav({selected, onUpdateLanguage}){
 
+    const languages = ['All', 'JavaScript', 'Ruby', 'Java', 'CSS', 'Python']
+
+    return(
+        <React.Fragment> 
+            <nav className='sidebar'>
+                    <ul className="sidebar-nav">
+                        {languages.map((language)=> (
+                            <li key={language}  className="sidebar-nav__item">
+                                <button
+                                    className={(language === selected ? 'sidebar-nav__btn--active' : 'sidebar-nav__btn')}
+                                    onClick={() => onUpdateLanguage(language)}>
+                                    {language}
+                                     </button>
+                             
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+        </React.Fragment>
+    )
+
+}
 export default class Popular extends React.Component {
     constructor(props){
         super(props)
@@ -19,24 +42,11 @@ export default class Popular extends React.Component {
 
     render (){
         
-        const languages = ['All', 'python', 'Javascript', 'php']
+        const { selectedLanguage } = this.state
         return (
             
             <React.Fragment>
-                <nav className='sidebar'>
-                    <ul className="sidebar-nav">
-                        {languages.map((language)=> (
-                            <li key={language}  className="sidebar-nav__item">
-                                <button
-                                    className={(language === this.state.selectedLanguage ? 'sidebar-nav__btn--active' : 'sidebar-nav__btn')}
-                                    onClick={() => this.updateLanguage(language)}>
-                                    {language}
-                                     </button>
-                             
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
+                <LanguagesNav selected = {selectedLanguage} onUpdateLanguage = {this.updateLanguage}/>
             </React.Fragment>
                 
         )
