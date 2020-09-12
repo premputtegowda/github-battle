@@ -41,18 +41,30 @@ body {
 
 .sidebar-nav{
 font-size: 1.4rem;
-margin-top: 3.5 rem;
+margin-top: 3.5rem;
 list-style: none;
 }
-
 .sidebar-nav__link {
-    color: #f4f9f9;
-    text-decoration: none;
-    text-transform: uppercase;
-    display: block;
-    padding: 1.5rem 3rem;
+    width: 100%;
+    margin:auto;
 }
-
-.sidebar-nav__link:visited {
-    
+.sidebar-nav__btn{
+  margin-top: 2rem;
+  border: none;
+  background: transparent;
+  color: #f4f9f9;
+  width:80%;
+  text-transform: uppercase;
+  text-align: left;
+  font-size:1.4rem;
+}
+.sidebar-nav__btn--active{
+  margin-top: 2rem;
+  border: none;
+  background: transparent;
+  color:#808585;
+  width:80%;
+  text-transform: uppercase;
+  text-align: left;
+  font-size:1.4rem;
 }
