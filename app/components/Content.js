@@ -1,16 +1,62 @@
 import React from 'react';
 import Popular from './Popular'
 import Main from './Main'
+import {fetchPopularRepos} from '../utils/api'
+
 
 
 export default class Content extends React.Component {
-
-    render (){
-        return (
-            <div className='content'>
-                <Popular />
-                <Main />
-            </div>
-        )
+    constructor(props) {
+      super(props)
+  
+      this.state = {
+        selectedLanguage: 'All',
+        repos: null,
+        error: null,
+      }
+  
+      this.updateLanguage = this.updateLanguage.bind(this)
+      this.isLoading = this.isLoading.bind(this)
     }
-}
+    componentDidMount () {
+      this.updateLanguage(this.state.selectedLanguage)
+    }
+    updateLanguage (selectedLanguage) {
+      this.setState({
+        selectedLanguage,
+        error: null,
+        repos: null
+      })
+  
+      fetchPopularRepos(selectedLanguage)
+        .then((repos) => this.setState({
+          repos,
+          error: null,
+        }))
+        .catch(() => {
+          console.warn('Error fetching repos: ', error)
+  
+          this.setState({
+            error: `There was an error fetching the repositories.`
+          })
+        })
+    }
+    isLoading() {
+      return this.state.repos === null && this.state.error === null
+    }
+    render() {
+      const { selectedLanguage, repos, error } = this.state
+  
+      return (
+        
+        <div className='content'>
+          <Popular
+            selectedLanguage={selectedLanguage}
+            onUpdateLanguage={this.updateLanguage}
+          />
+  
+          <Main error = {this.state.error} repos = {this.state.repos} isLoading = {this.isLoading}/>
+          </div>
+      )
+    }
+  }
