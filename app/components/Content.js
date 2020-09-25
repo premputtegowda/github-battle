@@ -11,7 +11,7 @@ export default class Content extends React.Component {
   
       this.state = {
         selectedLanguage: 'All',
-        repos: null,
+        repos: {},
         error: null,
       }
   
@@ -25,14 +25,15 @@ export default class Content extends React.Component {
       this.setState({
         selectedLanguage,
         error: null,
-        repos: null
+    
       })
-  
+      if(!this.state.repos[selectedLanguage]){
       fetchPopularRepos(selectedLanguage)
-        .then((repos) => this.setState({
-          repos,
-          error: null,
-        }))
+        .then((data) => {
+            this.setState(({repos})=>({
+                repos:{...repos, [selectedLanguage]: data}
+            }))
+        })
         .catch(() => {
           console.warn('Error fetching repos: ', error)
   
@@ -40,9 +41,11 @@ export default class Content extends React.Component {
             error: `There was an error fetching the repositories.`
           })
         })
+        }
     }
     isLoading() {
-      return this.state.repos === null && this.state.error === null
+    const {selectedLanguage, repos, error} = this.state
+      return !repos[selectedLanguage] && error === null
     }
     render() {
       const { selectedLanguage, repos, error } = this.state
@@ -55,7 +58,7 @@ export default class Content extends React.Component {
             onUpdateLanguage={this.updateLanguage}
           />
   
-          <Main error = {this.state.error} repos = {this.state.repos} isLoading = {this.isLoading}/>
+          <Main error = {error} repos = {repos[selectedLanguage]} isLoading = {this.isLoading}/>
           </div>
       )
     }
