@@ -22,14 +22,12 @@ export default class Content extends React.Component {
       this.updateLanguage(this.state.selectedLanguage)
     }
     updateLanguage (selectedLanguage) {
-        console.log('click')
       this.setState({
         selectedLanguage,
         error: null,
     
       })
       if(!this.state.repos[selectedLanguage]){
-        
       fetchPopularRepos(selectedLanguage)
         .then((data) => {
             this.setState(({repos})=>({
