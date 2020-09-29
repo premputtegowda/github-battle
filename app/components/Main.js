@@ -1,4 +1,5 @@
 import React from 'react';
+import Repos from './Repos'
 
 
 export default function Main({error, repos, isLoading}) {
@@ -12,7 +13,7 @@ export default function Main({error, repos, isLoading}) {
   
                 {error && <p>{error}</p>}
 
-            {repos && <pre>{JSON.stringify(repos, null, 2)}</pre>}
+            {repos && <Repos repos={repos}/>}
         </React.Fragment>
             
     )

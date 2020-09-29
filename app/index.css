@@ -1,9 +1,66 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+    line-height: 1;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Variables */
+:root {
+    --primary-color: #eb2f64;
+  }
+
+html{
+    font-size:62.5%;
+}
 body {
     background-color: #eb2f64;
 }
 
 .container {
-    max-width: 1200px;
+    max-width: 120rem;
     margin: 8rem auto;
     box-shadow: 0 2rem 6rem rgba(0,0,0,.3);
     min-height: 50rem;
@@ -19,6 +76,7 @@ body {
 .content {
     display:flex;
 }
+
 
 .sidebar {
     background-color:#333;
@@ -47,25 +105,152 @@ list-style: none;
 }
 .sidebar-nav__link {
     width: 100%;
-    margin:auto;
+    
 }
-.sidebar-nav__btn{
-  margin-top: 2rem;
+
+.sidebar-nav__item{
+position:relative;
+margin:1.5rem auto 0 auto;
+
+}
+
+.sidebar-nav__item::before {
+    content:'';
+    height:100%;
+    width:3px;
+    position: absolute;
+    top:0;
+    left:0;
+    background-color:#eb2f64;
+    transform: scaleY(0);
+    transition: transform 1s,
+                width .4s cubic-bezier(1,0,0,1) .2s;
+                
+
+}
+
+.sidebar-nav__item:hover::before{
+    transform: scaleY(1);
+    width:100%;
+    
+}
+
+.sidebar-nav__btn,
+.sidebar-nav__btn--active{
+    
   border: none;
   background: transparent;
   color: #f4f9f9;
-  width:80%;
+  width:100%;
   text-transform: uppercase;
   text-align: left;
   font-size:1.4rem;
+  height:3rem;
+  margin:auto;
+  /* text-align: center; */
+  text-align: center;
+  position:relative;
+  z-index:100;
+  outline:none;
 }
+
 .sidebar-nav__btn--active{
-  margin-top: 2rem;
-  border: none;
-  background: transparent;
-  color:#808585;
-  width:80%;
-  text-transform: uppercase;
-  text-align: left;
-  font-size:1.4rem;
+  
+    background-color: #eb2f64;
+    text-transform:uppercase;
 }
+
+.card-link{
+width:100%;
+display:block;
+}
+
+.card-link-btn{
+    width:100%;
+    /* background: #eb2f64; */
+    background:#333;
+    border:none;
+    height:3rem;
+    color:white;
+    cursor: pointer;
+    text-transform: uppercase;
+  
+
+}
+
+
+/* Repo card */
+.card-container{
+    display:flex;
+    flex-wrap: wrap;
+    /* padding: 5rem; */ 
+    justify-content: space-around;
+    margin-top:4rem;
+}
+.card {
+    display:flex;
+    align-items: center;
+    flex-direction:column;
+    width:25rem;
+    padding:2rem 0 0 0;
+    margin:2rem;
+    box-shadow: 0 2rem 4rem rgba(0,0,0,0.2)
+}
+
+.card-content{
+    display:flex;
+    flex-direction:column;
+    align-items: center;
+    padding-top:1rem;
+ 
+}
+
+.card-ranking{
+
+   
+    font-size:2rem;
+    width:4rem;
+    height:4rem;
+    border-radius:50%;
+    box-shadow: 0 1rem 4rem rgba(0,0,0,.3);
+    position:relative;
+}
+div.card-img{
+    width:100%;
+    height:auto;
+    
+}
+.card-img img{
+
+    width: 150px;
+    height: 150px;
+    border-radius: 3px;
+    margin: 0 auto;
+    display: block;
+    
+}
+
+.card-ranking-heading{
+    position:absolute;
+    left:50%;
+    top:50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    font-size:2.2rem;
+    font-weight: 300;
+}
+
+
+ul {
+    font-size: 1.4rem;
+}
+.card-list li{
+   display:flex;
+   align-items: center;
+   margin: 1rem;
+ 
+}
+
+.card-list svg {
+    margin-right: 1rem;
+  }
